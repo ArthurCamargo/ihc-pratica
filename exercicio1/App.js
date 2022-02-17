@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 import {
   View,
   Button,
-  Text,
+  StyleSheet,
   TextInput,
 } from 'react-native';
 
@@ -22,7 +22,7 @@ const NumberToSum = () => {
   return(
   <View style={{padding: 20}}>
   <TextInput
-    style={{height: 50}}
+    style={Button}
     placeholder='Number 1'
     onChangeText={number1 => newNumber1(number1)}
     />
@@ -32,6 +32,8 @@ const NumberToSum = () => {
     onChangeText={number2 => newNumber2(number2)}
     />
   <Button
+    style={styles.button}
+    color="#000000"
     onPress={() => {
       newSum(Number(number1) + Number(number2));
     }}
@@ -49,5 +51,19 @@ const Sum = (a ,b) => {
 const App: () => Node = () => {
   return <NumberToSum/>
 };
+
+const styles = StyleSheet.create({
+    button: {
+      backgroundColor: 'black',
+      color: 'white',
+      fontSize: 20,
+      padding: 10,
+      borderRadius: 20,
+    },
+});
+
+
+
+
 
 export default App;
