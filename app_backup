@@ -1,0 +1,64 @@
+import * as React from 'react';
+import {useState} from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {
+  View,
+  Button,
+  TextInput,
+  Text,
+} from 'react-native';
+
+const Stack = createNativeStackNavigator();
+
+const App = () => {
+    return (
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName="Text">
+            <Stack.Screen name="Text"
+                component={TextView}
+              options={{ title: 'Welcome'}}
+                />
+            <Stack.Screen name="Congratulations"
+              component={CongratulationsView}
+              />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
+};
+
+const newText = (text) => {
+  return <Text> Hey + {text} </Text>
+}
+
+const TextView = ({navigation}) => {
+  const [text, setText] = useState('')
+  const [sum, setSum] = useState('')
+  return(
+  <View>
+    <Button
+      title=" "
+      OnPress = {() =>
+        {
+          setText('hey');
+        }
+      }/>
+      <TextInput
+      placeholder='type something'
+      onChangeText={text => setText(text)}
+      />
+      <Button
+          OnPress={() => {
+              setSum(text);
+          }}
+          title={sum.toString()}
+    />
+  </View>
+);
+}
+
+const CongratulationsView = ({navigation}) => {
+    return <Text>Hi</Text>;
+}
+
+export default App;
